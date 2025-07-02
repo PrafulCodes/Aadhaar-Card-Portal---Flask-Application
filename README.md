@@ -7,7 +7,12 @@ This project is a simple Aadhaar Card Assistance web application built using Pyt
 ✔ Interact with a built-in AI Chatbot for quick Aadhaar-related FAQs
 
 🖥️ Project Screenshots
-Home Page
+![Screenshot 2025-07-03 024152](https://github.com/user-attachments/assets/f9653429-0cd8-459a-b1b0-e11abd6fc60e)
+![Screenshot 2025-07-03 024235](https://github.com/user-attachments/assets/773051f5-b106-4e59-b35b-784ce717f4c2)
+![Screenshot 2025-07-03 024702](https://github.com/user-attachments/assets/e1f71be4-b5f1-4233-a288-6db879e7a48b)
+
+
+
 
 Token Generation Section
 
