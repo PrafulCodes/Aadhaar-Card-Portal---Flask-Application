@@ -1,4 +1,6 @@
 Aadhaar Card Portal - Flask Application
+
+Aadhaar Card Portal - Flask Application
 This project is a simple Aadhaar Card Assistance web application built using Python (Flask), MySQL, and JavaScript. It allows users to:
 
 ✔ Sign up with their name and email
@@ -7,11 +9,11 @@ This project is a simple Aadhaar Card Assistance web application built using Pyt
 ✔ Interact with a built-in AI Chatbot for quick Aadhaar-related FAQs
 
 🖥️ Project Screenshots
-Home Page
+<h3>Home Page</h3>
 ![Screenshot 2025-07-03 024152](https://github.com/user-attachments/assets/f9653429-0cd8-459a-b1b0-e11abd6fc60e)
-Sign-up Confirmation
+<h3>Sign-up Confirmation</h3>
 ![Screenshot 2025-07-03 024235](https://github.com/user-attachments/assets/773051f5-b106-4e59-b35b-784ce717f4c2)
-My-Sql Dashboard when Signed-up
+<h3>My-Sql Dashboard when Signed-up</h3>
 ![Screenshot 2025-07-03 024702](https://github.com/user-attachments/assets/e1f71be4-b5f1-4233-a288-6db879e7a48b)
 
 
