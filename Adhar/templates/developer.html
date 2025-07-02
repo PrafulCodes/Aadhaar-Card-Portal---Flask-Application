@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="header-left">
+        <a href="{{ url_for('home') }}"><img src="https://uidai.gov.in/images/langPage/uidai_english_logo@2x.png" alt="Gov Logo" class="gov-logo"></a>
+    </div>
+    <div class="header-right">
+        <img src="https://uidai.gov.in/images/langPage/Page-1.svg" alt="Aadhaar Logo" class="aadhaar-logo">
+        <img
+         id="defaultAvatar"
+         src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+         alt="User Avatar"
+         width="50"
+         style="display: none; border-radius: 50%;"
+        />
+
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div class="developer-box">
+            <img src="{{ url_for('static', filename='Alison.jpg') }}" alt="Developer 1">
+            <div class="developer-content">
+                <h2>Alison Pinto</h2>
+                <p>
+                   I'm a tech enthusiast who genuinely enjoys designing and building websites. I love bringing ideas to life through frontend development, always aiming to create clean, smooth, and engaging user experiences. Right now, I’m sharpening my frontend skills while also exploring backend technologies to grow as a full-stack developer.
+                </p>
+                <div class="links">
+                    <a href="https://www.linkedin.com/in/alison-pinto-24862026b/" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://github.com/Alisonpinto" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="developer-box">
+            <img src="{{ url_for('static', filename='Praful.jpg') }}" alt="Developer 2">
+            <div class="developer-content">
+                <h2>Praful Mohite</h2>
+                <p>
+                    I am a passionate tech enthusiast with a strong focus on building web applications using JavaScript.
+                    I enjoy exploring modern technologies to create efficient, user-friendly digital experiences.
+                    Currently, I am sharpening my skills in frontend development and expanding into backend technologies.
+                </p>
+                <div class="links">
+                    <a href="https://www.linkedin.com/in/praful-mohite" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://github.com/PrafulCodes" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<footer>
+    <p>Made with ❤ by Praful and Alison</p>
+</footer>
+
+</body>
+</html>

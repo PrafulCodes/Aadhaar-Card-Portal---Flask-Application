@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aadhaar Appointment Desk</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <div class="header-left">
+        <img src="https://uidai.gov.in/images/langPage/uidai_english_logo@2x.png" alt="Gov Logo" class="gov-logo">
+    </div>
+    <div class="header-right">
+        <img src="https://uidai.gov.in/images/langPage/Page-1.svg" alt="Aadhaar Logo" class="aadhaar-logo">
+        <a href="{{ url_for('developer') }}"><button id="developer">Meet The Developer</button></a>
+        <button id="signUpBtn">Sign Up</button>
+
+        <img
+         id="defaultAvatar"
+         src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+         alt="User Avatar"
+         width="50"
+         style="display: none; border-radius: 50%;"
+        />
+
+
+    </div>
+</header>
+
+<main>
+    <h2 class="center">TOKEN AND APPOINTMENT DESK</h2>
+
+    <section id="aadhaar-update-form">
+        <form>
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+
+            <label for="center">Select Nearest Aadhaar Seva Kendra:</label>
+            <select id="center" name="center" required>
+                <option value="" disabled selected>Select a center</option>
+                <option value="thane-west">Kapurbaudi</option>
+                <option value="thane-west">Thane West</option>
+                <option value="thane-east">Thane East</option>
+                <option value="ghodbunder-road">Ghodbunder Road</option>
+                <option value="naupada">Naupada</option>
+                <option value="mulund">Mulund</option>
+                <option value="bhandup">Bhandup</option>
+                <option value="dadar">Dadar</option>
+                <option value="kurla">Kurla</option>
+                <option value="vashi">Vashi</option>
+                <option value="nerul">Nerul</option>
+                <option value="belapur">Belapur</option>
+                <option value="bhiwandi">Bhiwandi</option>
+                <option value="dombivli-east">Dombivli East</option>
+                <option value="dombivli-west">Dombivli West</option>
+                <option value="kalyan-east">Kalyan East</option>
+                <option value="kalyan-west">Kalyan West</option>
+                <option value="ambernath">Ambernath</option>
+                <option value="badlapur">Badlapur</option>
+                <option value="ulhasnagar">Ulhasnagar</option>
+                <option value="titwala">Titwala</option>
+
+            </select>
+
+            <label for="update-type">Select Type of Update:</label>
+            <select id="update-type" name="update-type" required>
+                <option value="" disabled selected>Select update type</option>
+                <option value="phone-number">Phone Number</option>
+                <option value="name">Name</option>
+                <option value="address">Address</option>
+                <option value="dob">Date of Birth</option>
+                <option value="gender">Gender</option>
+                <option value="email">Email ID</option>
+                <option value="photo">Photograph</option>
+                <option value="fingerprint">Fingerprint Update</option>
+                <option value="iris">Iris Scan Update</option>
+                <option value="child-5yr-bio">Child Biometric (Age 5)</option>
+                <option value="child-15yr-bio">Child Biometric (Age 15)</option>
+                <option value="relationship">Relationship Details</option>
+                <option value="careof">Care Of (C/O)</option>
+                <option value="reprint">Request Aadhaar Reprint</option>
+            </select>
+
+            <label for="documents">Upload Required Documents <small>(add your valid ID proof, Max 50KB each)</small>:</label>
+            <input type="file" id="documents" name="documents" accept="image/*,application/pdf" multiple required>
+
+            <button type="button" id="submit-form">Submit</button>
+<p id="submitMessage" style="text-align:center; color:green; margin-top:10px;"></p>
+        </form>
+    </section>
+
+    <button type="button" id="generate-token">Generate Token</button>
+    <p id="tokenDisplay"></p>
+</main>
+
+<!-- Sign-Up Modal -->
+<div id="signUpModal" class="modal">
+    <div class="modal-content">
+        <span class="closeBtn">&times;</span>
+        <h3>Sign Up</h3>
+        <label for="signupName">Full Name:</label>
+        <input type="text" id="signupName" placeholder="Enter your name" required>
+
+        <label for="signupEmail">Email:</label>
+        <input type="email" id="signupEmail" placeholder="Enter your email" required>
+
+        <label for="signupPassword">Password:</label>
+        <input type="password" id="signupPassword" placeholder="Enter password" required>
+
+        <button id="signupSubmit">Submit</button>
+        <button id="googleSignIn"><i class="fa-brands fa-google"></i> Sign in with Google</button>
+    </div>
+</div>
+
+<!-- AI Bubble & Chat -->
+<div id="aiBubble">AI</div>
+<div id="chatBot" class="chatbot-window">
+    <div class="chat-header">
+        <span>Bubble AI</span>
+        <span id="closeChat" class="closeBtn">&times;</span>
+    </div>
+    <div class="chat-body" id="chatMessages" style="padding: 10px; height: 250px; overflow-y: auto;">
+    <div class="aiMsg">Hello! I’m Bubble AI. Ask me anything about Aadhar.</div>
+</div>
+<div class="chat-input" style="display: flex; padding: 10px;">
+    <input type="text" id="chatInput" placeholder="Type your question..." style="flex: 1; padding: 8px;">
+    <button id="sendChatMessage" <i class="fa-regular fa-circle-right"></i></button>
+</div>
+</div>
+
+
+
+<footer>
+    <p>Made with ❤ by Praful and Alison</p>
+</footer>
+<script type="module">
+  // Firebase SDK imports
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-analytics.js";
+  import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
+  // Your updated Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAPnK4FLfCqt-5QyrxtYLKKa9zQ9N5dpuM",
+    authDomain: "aadhar-card-953b6.firebaseapp.com",
+    projectId: "aadhar-card-953b6",
+    storageBucket: "aadhar-card-953b6.firebasestorage.app",
+    messagingSenderId: "637426059586",
+    appId: "1:637426059586:web:3ace3288f445acde19a0db",
+    measurementId: "G-X0T56JRZF2"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  // Sign-Up with Email/Password
+  document.getElementById('signupSubmit').addEventListener('click', () => {
+    const name = document.getElementById('signupName').value;
+    const email = document.getElementById('signupEmail').value;
+    const password = document.getElementById('signupPassword').value;
+
+    if (!name || !email || !password) {
+      alert("Please fill all fields");
+      return;
+    }
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        alert("Sign-up successful!");
+
+        fetch('http://127.0.0.1:5000/saveUser', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email })
+        })
+        .then(res => res.text())
+        .then(data => console.log(data))
+        .catch(err => console.error(err));
+
+        document.getElementById('signUpModal').style.display = 'none';
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  });
+
+  // Google Sign-In
+  document.getElementById('googleSignIn').addEventListener('click', () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        alert("Google Sign-in successful!");
+
+        fetch('http://127.0.0.1:5000/saveUser', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: user.displayName, email: user.email })
+        })
+        .then(res => res.text())
+        .then(data => console.log(data))
+        .catch(err => console.error(err));
+
+        document.getElementById('signUpModal').style.display = 'none';
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
